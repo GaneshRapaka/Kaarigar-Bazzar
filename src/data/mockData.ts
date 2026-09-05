@@ -1,0 +1,143 @@
+import { ProductItem, OrderItem, ArtisanProfile } from '../types';
+
+export const INITIAL_PROFILE: ArtisanProfile = {
+  name: 'Lakshmi',
+  initial: 'L',
+  avatar: '/assets/artisan_lakshmi.jpg',
+  title: 'Block-print artisan',
+  location: 'Telangana',
+  language: 'తెలుగు (Telugu)',
+  teluguLanguage: 'భాష',
+  phone: '+91 98480 22338',
+  voiceFeedbackEnabled: true,
+  craftSpecialization: 'Hand Block-Printing, Natural Indigo Dyes',
+};
+
+export const INITIAL_PRODUCTS: ProductItem[] = [
+  {
+    id: 'prod-1',
+    title: 'Indigo Cushion Cover',
+    teluguTitle: 'ఇండిగో కుషన్ కవర్',
+    category: 'Home Décor • Regional Textiles',
+    price: 620,
+    costPrice: 340,
+    profit: 280,
+    status: 'live',
+    image: '/assets/indigo_cushion.jpg',
+    matchPercentage: 94,
+    story:
+      'Beautifully handcrafted cushion cover featuring traditional block-prints from Telangana. Handprinted using pure natural indigo dyes on premium organic cotton. Features classic floral bootis designed to bring an artisan spirit to your living room.',
+  },
+  {
+    id: 'prod-2',
+    title: 'Silk Pochampally Scarf',
+    teluguTitle: 'పోచంపల్లి పట్టు స్కార్ఫ్',
+    category: 'Apparel • Handloom Silk',
+    price: 1450,
+    costPrice: 850,
+    profit: 600,
+    status: 'live',
+    image: '/assets/pochampally_scarf.jpg',
+    matchPercentage: 98,
+    story:
+      'Authentic geometric ikat woven silk scarf hand-dyed using traditional Telia Rumal resistive techniques by master weavers in Bhoodan Pochampally.',
+  },
+  {
+    id: 'prod-3',
+    title: 'Block Print Runner',
+    teluguTitle: 'బ్లాక్ ప్రింట్ టేబుల్ రన్నర్',
+    category: 'Home Décor • Handprinted Khadi',
+    price: 890,
+    costPrice: 480,
+    profit: 410,
+    status: 'live',
+    image: '/assets/block_print_runner.jpg',
+    matchPercentage: 91,
+    story:
+      'Artisanal table runner featuring repeating floral vine patterns stamped with carved teakwood blocks in natural madder and turmeric pigments.',
+  },
+  {
+    id: 'prod-4',
+    title: 'Kalamkari Saree',
+    teluguTitle: 'కలంకారీ పట్టు చీర',
+    category: 'Apparel • Heritage Sarees',
+    price: 4200,
+    costPrice: 2600,
+    profit: 1600,
+    status: 'paused',
+    image: '/assets/kalamkari_saree.jpg',
+    matchPercentage: 96,
+    story:
+      'Exquisite hand-painted pen Kalamkari silk saree depicting mythological tree of life motifs with organic vegetable dyes on mulberry silk.',
+  },
+];
+
+export const INITIAL_ORDERS: OrderItem[] = [
+  {
+    id: 'ord-101',
+    city: 'Mumbai',
+    status: 'Awaiting Packing',
+    statusGroup: 'new',
+    amount: 620,
+    customerName: 'Aarav Sharma',
+    itemTitle: 'Indigo Cushion Cover',
+    timeAgo: '2 hours ago',
+  },
+  {
+    id: 'ord-102',
+    city: 'Delhi',
+    status: 'Awaiting Packing',
+    statusGroup: 'new',
+    amount: 1240,
+    customerName: 'Pooja Verma',
+    itemTitle: 'Indigo Cushion Cover (Set of 2)',
+    timeAgo: '4 hours ago',
+  },
+  {
+    id: 'ord-103',
+    city: 'Hyderabad',
+    status: 'Delivered',
+    statusGroup: 'delivered',
+    amount: 1450,
+    customerName: 'Venkatesh Rao',
+    itemTitle: 'Silk Pochampally Scarf',
+    timeAgo: 'Yesterday',
+  },
+  {
+    id: 'ord-104',
+    city: 'Chennai',
+    status: 'Delivered',
+    statusGroup: 'delivered',
+    amount: 4200,
+    customerName: 'Meenakshi Sundaram',
+    itemTitle: 'Kalamkari Saree',
+    timeAgo: '3 days ago',
+  },
+  {
+    id: 'ord-105',
+    city: 'Bengaluru',
+    status: 'Packed',
+    statusGroup: 'packed',
+    amount: 890,
+    customerName: 'Karthik N.',
+    itemTitle: 'Block Print Runner',
+    timeAgo: '5 hours ago',
+  },
+  {
+    id: 'ord-106',
+    city: 'Pune',
+    status: 'Shipped',
+    statusGroup: 'shipped',
+    amount: 1450,
+    customerName: 'Ananya Deshmukh',
+    itemTitle: 'Silk Pochampally Scarf',
+    timeAgo: '1 day ago',
+  },
+];
+
+export const LANGUAGES = [
+  { id: 'te', name: 'Telugu', native: 'తెలుగు', badge: 'Popular in Telangana' },
+  { id: 'en', name: 'English', native: 'English', badge: 'Standard' },
+  { id: 'hi', name: 'Hindi', native: 'हिन्दी', badge: 'राष्ट्रभाषा' },
+  { id: 'ta', name: 'Tamil', native: 'தமிழ்', badge: 'தென்னிந்தியா' },
+];
