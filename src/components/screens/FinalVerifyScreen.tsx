@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Check, Sparkles, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Check, ShieldCheck } from 'lucide-react';
 
 interface FinalVerifyScreenProps {
   onBack: () => void;
@@ -13,37 +13,37 @@ export const FinalVerifyScreen: React.FC<FinalVerifyScreenProps> = ({
   price = 620,
 }) => {
   return (
-    <div className="flex-1 flex flex-col justify-between p-4 bg-artisan-bg overflow-y-auto select-none space-y-4">
+    <div className="flex-1 flex flex-col justify-between p-4 bg-[#101415] text-[#e0e3e5] overflow-y-auto select-none space-y-4">
       {/* Top Header Bar */}
       <div className="flex items-center justify-between pb-1">
         <button
           onClick={onBack}
-          className="w-9 h-9 rounded-full bg-white border border-artisan-border flex items-center justify-center text-artisan-text hover:bg-neutral-100 transition"
+          className="w-9 h-9 rounded-xl bg-[#191c1e] border border-[#1E293B] flex items-center justify-center text-white hover:bg-[#272a2c] transition shadow-sm"
         >
           <ArrowLeft className="w-4 h-4" />
         </button>
 
-        <div className="text-center">
-          <h2 className="text-sm font-bold text-artisan-text tracking-tight">Final Confirmation</h2>
-          <span className="text-[11px] text-artisan-muted font-medium">Step 6 of 6</span>
+        <div className="text-center font-mono">
+          <h2 className="text-sm font-bold text-white tracking-tight">Final Confirmation</h2>
+          <span className="text-[10px] text-[#b4c5ff] bg-[#2563eb]/20 px-2 py-0.2 rounded border border-[#2563eb]/30">STEP 6 OF 6</span>
         </div>
 
         <div className="w-9" />
       </div>
 
-      <div className="space-y-4 flex-1 overflow-y-auto my-auto">
+      <div className="space-y-4 flex-1 overflow-y-auto my-auto font-mono">
         {/* Title & Guidance */}
         <div className="space-y-1">
-          <h3 className="text-xl font-extrabold text-artisan-text">Verify & Publish</h3>
-          <p className="text-xs text-artisan-muted leading-relaxed">
+          <h3 className="text-xl font-bold text-white">Verify & Publish</h3>
+          <p className="text-xs text-[#8d90a0] leading-relaxed">
             Double check your artisan item summary before buyers in Telangana see it.
           </p>
         </div>
 
         {/* Product Card Summary */}
-        <div className="bg-white rounded-3xl p-4 border border-artisan-border shadow-soft space-y-4">
+        <div className="bg-[#191c1e] rounded-2xl p-4 border border-[#1E293B] shadow-sm space-y-4">
           <div className="flex items-center gap-3.5">
-            <div className="w-20 h-20 rounded-2xl overflow-hidden border border-artisan-border shrink-0 shadow-sm">
+            <div className="w-20 h-20 rounded-xl overflow-hidden border border-[#1E293B] shrink-0 shadow-sm">
               <img
                 src="/assets/indigo_cushion.jpg"
                 alt="Product"
@@ -52,38 +52,38 @@ export const FinalVerifyScreen: React.FC<FinalVerifyScreenProps> = ({
             </div>
 
             <div className="space-y-1 flex-1">
-              <span className="text-[10px] font-extrabold text-terracotta tracking-wider uppercase">
+              <span className="text-[10px] font-bold text-[#b4c5ff] bg-[#2563eb]/20 px-1.5 py-0.5 rounded tracking-wider uppercase border border-[#2563eb]/30">
                 CUSHION COVER
               </span>
-              <h4 className="text-sm font-bold text-artisan-text leading-snug">
+              <h4 className="text-sm font-bold text-white leading-snug pt-0.5">
                 Indigo Floral Cushion Cover
               </h4>
-              <p className="text-[11px] text-artisan-muted">
+              <p className="text-[11px] text-[#8d90a0]">
                 Home Décor • Textiles
               </p>
             </div>
           </div>
 
-          <div className="pt-3 border-t border-artisan-border flex items-center justify-between">
-            <span className="text-xs font-semibold text-artisan-muted">Buyer Price:</span>
-            <span className="text-xl font-black text-artisan-text">₹{price}</span>
+          <div className="pt-3 border-t border-[#1E293B] flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#8d90a0]">Buyer Price:</span>
+            <span className="text-2xl font-bold text-white">₹{price}</span>
           </div>
         </div>
 
         {/* Kaarigar Bazaar Trust Badge */}
-        <div className="bg-[#FAF7F2] p-3 rounded-2xl border border-artisan-border/70 flex items-center gap-2.5">
-          <ShieldCheck className="w-5 h-5 text-forest shrink-0" />
-          <p className="text-[11px] text-artisan-muted leading-tight">
-            Ready to list on Kaarigar Bazaar network. Guaranteed direct payment to your bank account.
+        <div className="bg-[#191c1e] p-3 rounded-xl border border-[#1E293B] flex items-center gap-2.5">
+          <ShieldCheck className="w-5 h-5 text-[#22C55E] shrink-0" />
+          <p className="text-[11px] text-[#8d90a0] leading-tight">
+            Ready to list on Kaarigar Bazaar network. Direct escrow payout to your registered bank account.
           </p>
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="space-y-2.5 pt-2">
+      <div className="space-y-2.5 pt-2 font-mono">
         <button
           onClick={onPublish}
-          className="w-full bg-terracotta hover:bg-terracotta-hover text-white py-3.5 px-4 rounded-2xl font-bold text-xs shadow-craft active:scale-[0.99] transition flex items-center justify-center gap-2"
+          className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white py-3 px-4 rounded-xl font-bold text-xs shadow-glow-blue active:scale-[0.99] transition flex items-center justify-center gap-2 border border-[#b4c5ff]/30"
         >
           <span>Publish Listing</span>
           <Check className="w-4 h-4 stroke-[3]" />
@@ -91,7 +91,7 @@ export const FinalVerifyScreen: React.FC<FinalVerifyScreenProps> = ({
 
         <button
           onClick={onBack}
-          className="w-full bg-white hover:bg-neutral-50 text-artisan-text border border-artisan-border py-3 px-4 rounded-2xl font-bold text-xs shadow-soft transition"
+          className="w-full bg-[#191c1e] hover:bg-[#272a2c] text-[#c3c6d7] border border-[#1E293B] py-3 px-4 rounded-xl font-bold text-xs transition"
         >
           Go Back & Edit
         </button>

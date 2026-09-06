@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { ScreenId, NavTab, ProductItem, OrderItem } from './types';
+import { ScreenId, NavTab, ProductItem, OrderItem, TrustedCircleMember, ArtisanProfile } from './types';
 import { INITIAL_PRODUCTS, INITIAL_ORDERS, INITIAL_PROFILE } from './data/mockData';
+import { INITIAL_TRUSTED_MEMBERS } from './services/TrustedCircleService';
+import { LanguageProvider } from './services/i18n';
 import { MobileFrame } from './components/layout/MobileFrame';
 import { BottomNav } from './components/layout/BottomNav';
 import { ScreenSwitcher } from './components/common/ScreenSwitcher';
+import { VoiceAssistantModal } from './components/common/VoiceAssistantModal';
 
-// 14 Screens
+// 16 Screens
 import { LanguageSelectScreen } from './components/screens/LanguageSelectScreen';
+import { LoginScreen } from './components/screens/LoginScreen';
 import { OtpAuthScreen } from './components/screens/OtpAuthScreen';
+import { MinimalOnboardingScreen } from './components/screens/MinimalOnboardingScreen';
 import { HomeScreen } from './components/screens/HomeScreen';
 import { TakePhotoScreen } from './components/screens/TakePhotoScreen';
 import { ReviewPhotoScreen } from './components/screens/ReviewPhotoScreen';
@@ -20,29 +25,41 @@ import { MyShopScreen } from './components/screens/MyShopScreen';
 import { OrdersScreen } from './components/screens/OrdersScreen';
 import { EarningsScreen } from './components/screens/EarningsScreen';
 import { ProfileScreen } from './components/screens/ProfileScreen';
+import { SellerVerificationModal } from './components/common/SellerVerificationModal';
 
-export function App() {
+export function AppContent() {
   const [currentScreen, setCurrentScreen] = useState<ScreenId>('home');
   const [currentTab, setCurrentTab] = useState<NavTab>('home');
   const [showDeviceFrame, setShowDeviceFrame] = useState(true);
 
   // App domain state
-  const [profile, setProfile] = useState(INITIAL_PROFILE);
+  const [profile, setProfile] = useState<ArtisanProfile>(INITIAL_PROFILE);
+  const [loginPhone, setLoginPhone] = useState(INITIAL_PROFILE.phone || '+91 98480 22338');
   const [products, setProducts] = useState<ProductItem[]>(INITIAL_PRODUCTS);
   const [orders, setOrders] = useState<OrderItem[]>(INITIAL_ORDERS);
+  const [trustedMembers, _setTrustedMembers] = useState<TrustedCircleMember[]>(INITIAL_TRUSTED_MEMBERS);
   const [draftPrice, setDraftPrice] = useState(620);
+  const [isVoiceAssistantOpen, setIsVoiceAssistantOpen] = useState(false);
+  const [isSellerKycModalOpen, setIsSellerKycModalOpen] = useState(false);
 
   // Bottom Nav is shown on persistent app tabs
   const isTabScreen = ['home', 'my_shop', 'orders', 'earnings', 'profile'].includes(currentScreen);
 
   // Handlers for interactive flow
   const handleLanguageContinue = (_lang: string) => {
-    setCurrentScreen('otp_auth');
+    setCurrentScreen('login');
   };
 
-  const handleOtpVerify = () => {
-    setCurrentScreen('home');
-    setCurrentTab('home');
+  const handleOtpVerifySuccess = (isNewUser: boolean, authedProfile?: ArtisanProfile, _phone?: string) => {
+    if (authedProfile) {
+      setProfile(authedProfile);
+    }
+    if (isNewUser) {
+      setCurrentScreen('minimal_onboarding');
+    } else {
+      setCurrentScreen('home');
+      setCurrentTab('home');
+    }
   };
 
   const handleStartSell = () => {
@@ -106,13 +123,28 @@ export function App() {
     );
   };
 
+  const handleUpdatePrice = (productId: string, newPrice: number) => {
+    setProducts((prev) =>
+      prev.map((p) => (p.id === productId ? { ...p, price: newPrice } : p))
+    );
+  };
+
   const handleReset = () => {
     setCurrentScreen('language_select');
     setCurrentTab('home');
   };
 
+  const handleNavigateTab = (tab: NavTab) => {
+    setCurrentTab(tab);
+    if (tab === 'home') setCurrentScreen('home');
+    if (tab === 'orders') setCurrentScreen('orders');
+    if (tab === 'earnings') setCurrentScreen('earnings');
+    if (tab === 'profile') setCurrentScreen('profile');
+    if (tab === 'shop') setCurrentScreen('my_shop');
+  };
+
   return (
-    <div className="min-h-screen bg-[#141312] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#101415] text-[#e0e3e5] flex flex-col font-sans">
       {/* Top Screen Switcher Toolbar */}
       <ScreenSwitcher
         currentScreen={currentScreen}
@@ -137,27 +169,49 @@ export function App() {
             <LanguageSelectScreen onContinue={handleLanguageContinue} />
           )}
 
-          {/* Screen 2: OTP Auth */}
-          {currentScreen === 'otp_auth' && (
-            <OtpAuthScreen
-              phone={profile.phone}
+          {/* Screen 2: Artisan Login */}
+          {currentScreen === 'login' && (
+            <LoginScreen
               onBack={() => setCurrentScreen('language_select')}
-              onVerify={handleOtpVerify}
+              onSendOtp={(phoneNum) => {
+                setLoginPhone(phoneNum);
+                setCurrentScreen('otp_auth');
+              }}
+              onDirectLogin={(_role) => {
+                setCurrentScreen('home');
+                setCurrentTab('home');
+              }}
             />
           )}
 
-          {/* Screen 3: Home Dashboard */}
+          {/* Screen 3: OTP Auth */}
+          {currentScreen === 'otp_auth' && (
+            <OtpAuthScreen
+              phone={loginPhone}
+              onBack={() => setCurrentScreen('login')}
+              onVerifySuccess={handleOtpVerifySuccess}
+            />
+          )}
+
+          {/* Screen 4: Minimal Onboarding (First-time users only, no Aadhaar) */}
+          {currentScreen === 'minimal_onboarding' && (
+            <MinimalOnboardingScreen
+              phone={loginPhone}
+              onComplete={(newProfile) => {
+                setProfile(newProfile);
+                setCurrentScreen('home');
+                setCurrentTab('home');
+              }}
+            />
+          )}
+
+          {/* Screen 5: Home Dashboard */}
           {currentScreen === 'home' && (
             <HomeScreen
               profile={profile}
               onStartSell={handleStartSell}
-              onNavigateTab={(tab) => {
-                setCurrentTab(tab);
-                if (tab === 'orders') setCurrentScreen('orders');
-                if (tab === 'earnings') setCurrentScreen('earnings');
-                if (tab === 'profile') setCurrentScreen('profile');
-                if (tab === 'shop') setCurrentScreen('my_shop');
-              }}
+              onNavigateTab={handleNavigateTab}
+              onOpenVoiceAssistant={() => setIsVoiceAssistantOpen(true)}
             />
           )}
 
@@ -237,17 +291,28 @@ export function App() {
             />
           )}
 
-          {/* Screen 13: Earnings */}
+          {/* Screen 15: Earnings */}
           {currentScreen === 'earnings' && (
-            <EarningsScreen />
+            <EarningsScreen
+              profile={profile}
+              onOpenVerificationModal={() => setIsSellerKycModalOpen(true)}
+            />
           )}
 
-          {/* Screen 14: Profile */}
+          {/* Screen 16: Profile */}
           {currentScreen === 'profile' && (
             <ProfileScreen
               profile={profile}
+              trustedMembers={trustedMembers}
               onViewStorefront={() => setCurrentScreen('my_shop')}
               onChangeLanguage={() => setCurrentScreen('language_select')}
+              onKycVerified={(record) => {
+                setProfile((prev: ArtisanProfile) => ({
+                  ...prev,
+                  kycStatus: record.status,
+                  verificationRecord: record,
+                }));
+              }}
             />
           )}
 
@@ -255,13 +320,51 @@ export function App() {
           {isTabScreen && (
             <BottomNav
               currentTab={currentTab}
-              onSelectTab={(tab) => setCurrentTab(tab)}
+              onSelectTab={(tab) => handleNavigateTab(tab)}
               onNavigate={(screen) => setCurrentScreen(screen)}
+              onOpenVoice={() => setIsVoiceAssistantOpen(true)}
             />
           )}
+
+          {/* Multilingual Voice Assistant Modal */}
+          <VoiceAssistantModal
+            isOpen={isVoiceAssistantOpen}
+            onClose={() => setIsVoiceAssistantOpen(false)}
+            products={products}
+            orders={orders}
+            profile={profile}
+            trustedMembers={trustedMembers}
+            onNavigateTab={handleNavigateTab}
+            onNavigateScreen={(screen) => setCurrentScreen(screen as ScreenId)}
+            onUpdatePrice={handleUpdatePrice}
+            onPackOrder={handlePackOrder}
+            onOpenVerification={() => setIsSellerKycModalOpen(true)}
+          />
+
+          {/* Global Seller Verification Modal (e.g. from Earnings or Voice) */}
+          <SellerVerificationModal
+            isOpen={isSellerKycModalOpen}
+            sellerId={profile.id || 'artisan-current'}
+            onClose={() => setIsSellerKycModalOpen(false)}
+            onVerified={(record) => {
+              setProfile((prev: ArtisanProfile) => ({
+                ...prev,
+                kycStatus: record.status,
+                verificationRecord: record,
+              }));
+            }}
+          />
         </MobileFrame>
       </main>
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }
 
