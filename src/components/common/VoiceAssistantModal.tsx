@@ -236,20 +236,20 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="absolute inset-0 z-50 bg-[#101415]/80 backdrop-blur-md flex items-end justify-center p-3 animate-fadeIn">
+    <div className="absolute inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-end justify-center p-3 animate-fadeIn">
       <div
         ref={modalRef}
-        className="w-full max-h-[85vh] bg-[#191c1e] rounded-3xl p-4.5 border border-[#1E293B] shadow-2xl space-y-3.5 flex flex-col overflow-y-auto"
+        className="w-full max-h-[85vh] bg-artisan-bg rounded-3xl p-4.5 border border-artisan-border shadow-2xl space-y-3.5 flex flex-col overflow-y-auto"
       >
         {/* Header with Language badge & Mute control */}
-        <div className="flex items-center justify-between pb-2 border-b border-[#1E293B]">
+        <div className="flex items-center justify-between pb-2 border-b border-artisan-border">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-[#2563eb]/20 border border-[#2563eb]/40 flex items-center justify-center text-[#b4c5ff]">
+            <div className="w-8 h-8 rounded-full bg-terracotta/10 border border-terracotta/20 flex items-center justify-center text-terracotta">
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-xs font-mono font-bold text-[#e0e3e5]">{t('voice.title')}</h3>
-              <p className="text-[10px] text-[#b4c5ff] font-mono font-semibold">
+              <h3 className="text-xs font-bold text-artisan-text">{t('voice.title')}</h3>
+              <p className="text-[10px] text-terracotta font-semibold">
                 {languageConfig.native} ({languageConfig.name})
               </p>
             </div>
@@ -260,16 +260,16 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
               onClick={toggleMute}
               className={`p-1.5 rounded-full border transition ${
                 isMuted
-                  ? 'bg-[#101415] text-[#8d90a0] border-[#1E293B]'
-                  : 'bg-[#101415] text-[#b4c5ff] border-[#2563eb]/40 shadow-glow-blue'
+                  ? 'bg-white text-artisan-muted border-artisan-border'
+                  : 'bg-white text-terracotta border-terracotta/30 shadow-soft'
               }`}
               title={isMuted ? t('voice.unmute') : t('voice.mute')}
             >
-              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#2563eb]" />}
+              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-terracotta" />}
             </button>
             <button
               onClick={onClose}
-              className="w-7 h-7 rounded-full bg-[#101415] hover:bg-[#1E293B] border border-[#1E293B] flex items-center justify-center text-[#8d90a0] hover:text-white transition"
+              className="w-7 h-7 rounded-full bg-white hover:bg-neutral-100 border border-artisan-border flex items-center justify-center text-neutral-500 hover:text-artisan-text transition"
             >
               <X className="w-4 h-4" />
             </button>
@@ -292,10 +292,10 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
             <div
               className={`w-18 h-18 rounded-full flex items-center justify-center text-white shadow-xl transition-all duration-300 ${
                 isListening
-                  ? 'bg-[#2563eb] scale-105 ring-4 ring-[#2563eb]/40 shadow-glow-blue'
+                  ? 'bg-terracotta scale-105 ring-4 ring-terracotta/30 shadow-craft'
                   : isProcessing
-                  ? 'bg-amber-500 scale-100 ring-4 ring-amber-500/40 animate-pulse'
-                  : 'bg-[#2563eb] hover:bg-[#1d4ed8] shadow-glow-blue'
+                  ? 'bg-amber-500 scale-100 ring-4 ring-amber-400/30 animate-pulse'
+                  : 'bg-terracotta hover:bg-terracotta-hover shadow-craft'
               }`}
             >
               <Mic className="w-8 h-8" />
@@ -303,8 +303,8 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
 
             {isListening && (
               <>
-                <div className="absolute inset-0 rounded-full bg-[#2563eb]/25 animate-ping" />
-                <div className="absolute -inset-2.5 rounded-full border-2 border-[#2563eb]/40 animate-pulse" />
+                <div className="absolute inset-0 rounded-full bg-terracotta/25 animate-ping" />
+                <div className="absolute -inset-2.5 rounded-full border-2 border-terracotta/40 animate-pulse" />
               </>
             )}
           </button>
@@ -316,10 +316,10 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
                 key={i}
                 className={`w-1 rounded-full transition-all duration-200 ${
                   isListening
-                    ? 'bg-[#2563eb] shadow-glow-blue animate-pulse'
+                    ? 'bg-terracotta animate-pulse'
                     : isSpeaking
-                    ? 'bg-emerald-400 animate-pulse'
-                    : 'bg-[#1E293B]'
+                    ? 'bg-forest animate-pulse'
+                    : 'bg-neutral-300'
                 }`}
                 style={{
                   height: isListening || isSpeaking ? `${h}%` : '20%',
@@ -329,7 +329,7 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
             ))}
           </div>
 
-          <p className="text-xs font-mono font-semibold text-[#8d90a0] text-center">
+          <p className="text-xs font-semibold text-artisan-muted text-center">
             {isListening
               ? t('voice.listening')
               : isProcessing
@@ -342,18 +342,18 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
 
         {/* Live Recognized Speech Box */}
         {recognizedText && (
-          <div className="bg-[#101415] p-3 rounded-2xl border border-[#1E293B] shadow-sm space-y-1">
+          <div className="bg-white p-3 rounded-2xl border border-artisan-border shadow-soft space-y-1">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold text-[#8d90a0] uppercase tracking-wider">
+              <span className="text-[10px] font-bold text-artisan-muted uppercase tracking-wider">
                 Recognized Speech
               </span>
               {understoodIntent && (
-                <span className="text-[9px] font-mono font-extrabold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                <span className="text-[9px] font-extrabold text-forest bg-forest-light border border-forest/30 px-2 py-0.5 rounded-full">
                   {understoodIntent}
                 </span>
               )}
             </div>
-            <p className="text-xs font-mono font-bold text-[#e0e3e5] leading-relaxed">
+            <p className="text-xs font-bold text-artisan-text leading-relaxed">
               "{recognizedText}"
             </p>
           </div>
@@ -361,12 +361,12 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
 
         {/* Assistant Response Box */}
         {assistantResponse && (
-          <div className="bg-[#101415] p-3.5 rounded-2xl border border-[#2563eb]/30 shadow-sm space-y-1.5">
-            <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold text-[#b4c5ff] uppercase tracking-wider">
-              <Sparkles className="w-3 h-3 text-[#2563eb]" />
+          <div className="bg-white p-3.5 rounded-2xl border border-terracotta/30 shadow-soft space-y-1.5">
+            <div className="flex items-center gap-1.5 text-[10px] font-bold text-terracotta uppercase tracking-wider">
+              <Sparkles className="w-3 h-3 text-terracotta" />
               <span>Kaarigar Response</span>
             </div>
-            <p className="text-xs font-medium text-[#e0e3e5] leading-relaxed">
+            <p className="text-xs font-medium text-artisan-text leading-relaxed">
               {assistantResponse}
             </p>
           </div>
@@ -374,14 +374,14 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
 
         {/* Action Confirmation Card (For Sensitive Actions like Price Change) */}
         {pendingConfirmation && (
-          <div className="bg-[#101415] p-3.5 rounded-2xl border-2 border-amber-500/40 space-y-2.5 animate-fadeIn">
-            <div className="flex items-start gap-2 text-amber-400">
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-amber-400 shadow-soft space-y-2.5 animate-fadeIn">
+            <div className="flex items-start gap-2 text-amber-600">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-xs font-bold text-[#e0e3e5]">
+                <h4 className="text-xs font-bold text-artisan-text">
                   {pendingConfirmation.title}
                 </h4>
-                <p className="text-[11px] text-[#8d90a0] mt-0.5">
+                <p className="text-[11px] text-artisan-muted mt-0.5">
                   {pendingConfirmation.description}
                 </p>
               </div>
@@ -390,13 +390,13 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
             <div className="flex gap-2 pt-1">
               <button
                 onClick={handleConfirmAction}
-                className="flex-1 bg-[#2563eb] hover:bg-[#1d4ed8] text-white py-2 rounded-xl text-xs font-mono font-bold shadow-glow-blue active:scale-95 transition"
+                className="flex-1 bg-terracotta hover:bg-terracotta-hover text-white py-2 rounded-xl text-xs font-bold shadow-craft active:scale-95 transition"
               >
                 {t('common.yes')}
               </button>
               <button
                 onClick={handleCancelAction}
-                className="px-3 py-2 bg-[#191c1e] hover:bg-[#1E293B] text-[#e0e3e5] border border-[#1E293B] rounded-xl text-xs font-mono font-semibold transition"
+                className="px-3 py-2 bg-white hover:bg-neutral-100 text-artisan-text border border-artisan-border rounded-xl text-xs font-semibold transition"
               >
                 {t('common.no')}
               </button>
@@ -406,7 +406,7 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
 
         {/* Status Message Pill */}
         {statusMessage && (
-          <div className="p-2 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-center text-xs font-mono font-bold flex items-center justify-center gap-1.5">
+          <div className="p-2 rounded-xl bg-forest-light border border-forest/30 text-forest text-center text-xs font-bold flex items-center justify-center gap-1.5">
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>{statusMessage}</span>
           </div>
@@ -414,7 +414,7 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
 
         {/* Quick Suggestion Chips */}
         <div className="space-y-1.5 pt-1">
-          <span className="text-[10px] font-mono font-bold text-[#8d90a0] uppercase tracking-wider block px-1">
+          <span className="text-[10px] font-bold text-artisan-muted uppercase tracking-wider block px-1">
             {t('voice.suggestionsTitle')}
           </span>
           <div className="flex flex-wrap gap-1.5">
@@ -422,7 +422,7 @@ export const VoiceAssistantModal: React.FC<VoiceAssistantModalProps> = ({
               <button
                 key={idx}
                 onClick={() => handleSuggestionClick(prompt)}
-                className="text-[11px] bg-[#101415] hover:bg-[#2563eb]/20 hover:text-[#b4c5ff] hover:border-[#2563eb]/40 border border-[#1E293B] rounded-xl px-2.5 py-1 text-[#e0e3e5] font-medium transition text-left"
+                className="text-[11px] bg-white hover:bg-[#FFF8F5] hover:text-terracotta hover:border-terracotta/40 border border-artisan-border rounded-xl px-2.5 py-1 text-artisan-text font-medium transition text-left shadow-xs"
               >
                 {prompt}
               </button>

@@ -37,23 +37,23 @@ export const ScreenSwitcher: React.FC<ScreenSwitcherProps> = ({
   ];
 
   return (
-    <header className="w-full bg-[#101415] border-b border-[#1E293B] text-[#e0e3e5] px-4 py-2.5 z-50 select-none shadow-md">
+    <header className="w-full bg-[#181615] border-b border-neutral-800 text-neutral-200 px-4 py-3 z-50 select-none shadow-md">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
         {/* Brand & Project Info */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#2563eb] flex items-center justify-center text-white font-mono font-bold text-sm shadow-glow-blue">
+          <div className="w-8 h-8 rounded-xl bg-terracotta flex items-center justify-center text-white font-extrabold text-sm shadow-craft">
             KB
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-white text-sm tracking-tight">Kaarigar Bazaar</span>
-              <span className="text-xs text-[#8d90a0]">| Cognitive OS Design</span>
-              <span className="text-[10px] font-mono bg-[#2563eb]/20 text-[#b4c5ff] px-2 py-0.5 rounded border border-[#2563eb]/40">
+              <span className="font-extrabold text-white text-sm tracking-tight">Artisens</span>
+              <span className="text-xs text-neutral-400">| Kaarigar Bazaar</span>
+              <span className="text-[10px] bg-terracotta/20 text-terracotta px-2 py-0.2 rounded-full font-bold border border-terracotta/30">
                 16 Screens
               </span>
             </div>
-            <p className="text-[11px] text-[#8d90a0] font-mono">
-              Artisan Assistant • Stitch Reference Integration
+            <p className="text-[11px] text-neutral-400">
+              Telangana Artisan App Replication (React + Vite + Tailwind CSS)
             </p>
           </div>
         </div>
@@ -66,10 +66,10 @@ export const ScreenSwitcher: React.FC<ScreenSwitcherProps> = ({
               <button
                 key={s.id}
                 onClick={() => onSelectScreen(s.id)}
-                className={`text-xs px-2.5 py-1.5 rounded font-mono font-semibold whitespace-nowrap transition-all ${
+                className={`text-xs px-2.5 py-1.5 rounded-lg font-semibold whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-[#2563eb] text-white shadow-glow-blue scale-105 border border-[#b4c5ff]/40'
-                    : 'bg-[#191c1e] hover:bg-[#272a2c] text-[#c3c6d7] border border-[#1E293B]'
+                    ? 'bg-terracotta text-white shadow-craft scale-105'
+                    : 'bg-neutral-800 hover:bg-neutral-700 text-neutral-300'
                 }`}
                 title={s.label}
               >
@@ -80,13 +80,13 @@ export const ScreenSwitcher: React.FC<ScreenSwitcherProps> = ({
         </div>
 
         {/* Toolbar controls */}
-        <div className="flex items-center gap-2 font-mono">
+        <div className="flex items-center gap-2">
           <button
             onClick={onToggleDeviceFrame}
-            className={`text-xs px-3 py-1.5 rounded border transition flex items-center gap-1.5 ${
+            className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition flex items-center gap-1.5 ${
               showDeviceFrame
-                ? 'bg-[#191c1e] text-[#b4c5ff] border-[#2563eb]/50 shadow-sm'
-                : 'bg-[#2563eb]/20 text-[#b4c5ff] border-[#2563eb]'
+                ? 'bg-neutral-800 text-white border-neutral-700'
+                : 'bg-terracotta/20 text-terracotta border-terracotta/40'
             }`}
           >
             <Smartphone className="w-3.5 h-3.5" />
@@ -95,7 +95,7 @@ export const ScreenSwitcher: React.FC<ScreenSwitcherProps> = ({
 
           <button
             onClick={onReset}
-            className="text-xs px-3 py-1.5 rounded bg-[#191c1e] hover:bg-[#272a2c] text-[#c3c6d7] border border-[#1E293B] transition flex items-center gap-1.5"
+            className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 border border-neutral-700 transition flex items-center gap-1.5"
             title="Reset to Screen 1"
           >
             <RotateCcw className="w-3.5 h-3.5" />

@@ -4,31 +4,26 @@
 
 @layer base {
   body {
-    @apply font-sans bg-[#101415] text-[#e0e3e5] min-h-screen m-0 p-0 overflow-x-hidden antialiased;
+    @apply font-sans bg-[#121110] text-[#2B2521] min-h-screen m-0 p-0 overflow-x-hidden;
   }
 }
 
-/* Stitch Cognitive OS Pattern Utilities */
-.bg-artisan-pattern,
-.bg-stitch-pattern {
-  background-color: #101415;
-  background-image: radial-gradient(#1E293B 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-.bg-stitch-hud {
-  background: linear-gradient(180deg, #191c1e 0%, #101415 100%);
+/* Custom Artisan Theme Utilities */
+.bg-artisan-pattern {
+  background-color: #FAF7F2;
+  background-image: radial-gradient(#E8DEC9 0.75px, transparent 0.75px);
+  background-size: 16px 16px;
 }
 
 .bg-warm-gradient {
-  background: linear-gradient(180deg, #1d2022 0%, #101415 100%);
+  background: linear-gradient(180deg, #FAF7F2 0%, #F5ECE0 100%);
 }
 
 .text-telugu {
-  font-family: 'Noto Sans Telugu', 'Inter', sans-serif;
+  font-family: 'Noto Sans Telugu', 'Plus Jakarta Sans', sans-serif;
 }
 
-/* Precision Stitch scrollbar */
+/* Custom scrollbar for mobile screens */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -37,14 +32,14 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(180, 197, 255, 0.2);
+  background: rgba(200, 90, 50, 0.25);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(37, 99, 235, 0.6);
+  background: rgba(200, 90, 50, 0.45);
 }
 
-/* Stitch Scanner and Radar animations */
+/* Radar Pulse Animations */
 @keyframes ping-slow {
   0% {
     transform: scale(0.9);
@@ -62,32 +57,19 @@
 
 @keyframes scan-laser {
   0% {
-    top: 5%;
-    opacity: 0.3;
+    top: 10%;
+    opacity: 0.2;
   }
   50% {
-    opacity: 0.95;
+    opacity: 0.9;
   }
   100% {
-    top: 90%;
-    opacity: 0.3;
+    top: 85%;
+    opacity: 0.2;
   }
 }
 
 .animate-scan-laser {
   animation: scan-laser 2.2s ease-in-out infinite alternate;
-}
-
-/* Stitch Card & HUD Elevation Helpers */
-.stitch-card {
-  @apply bg-[#191c1e] border border-[#1E293B] rounded-2xl;
-}
-
-.stitch-card-hover {
-  @apply transition-all duration-200 hover:border-[#2563eb]/60 hover:shadow-craft;
-}
-
-.stitch-focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-[#2563eb];
 }
 

@@ -69,32 +69,32 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-between p-4.5 bg-[#101415] text-[#e0e3e5] overflow-y-auto select-none space-y-4">
+    <div className="flex-1 flex flex-col justify-between p-5 bg-artisan-bg overflow-y-auto select-none space-y-4">
       <div className="space-y-4 pt-1">
         {/* Top Header */}
         <div className="flex items-center justify-between">
           <button
             onClick={onBack}
-            className="w-9 h-9 rounded-xl bg-[#191c1e] border border-[#1E293B] flex items-center justify-center text-[#e0e3e5] hover:bg-[#272a2c] transition shadow-sm"
+            className="w-9 h-9 rounded-2xl bg-white border border-artisan-border flex items-center justify-center text-artisan-text hover:bg-neutral-50 transition shadow-soft"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
 
-          <span className="text-xs font-mono font-bold text-[#b4c5ff] bg-[#2563eb]/20 px-2.5 py-0.5 rounded border border-[#2563eb]/30">
+          <span className="text-xs font-bold text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full border border-terracotta/20">
             {languageConfig.native}
           </span>
         </div>
 
         {/* Brand Banner */}
         <div className="space-y-1.5 pt-1">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#2563eb]/10 text-[#b4c5ff] border border-[#2563eb]/30 text-[10px] font-mono font-bold">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-terracotta/10 text-terracotta text-[10px] font-bold">
             <span>🙏</span>
             <span>Kaarigar Bazaar • Telangana</span>
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">
+          <h1 className="text-2xl font-extrabold text-artisan-text tracking-tight">
             {t('login.title')}
           </h1>
-          <p className="text-xs text-[#8d90a0] leading-relaxed font-mono">
+          <p className="text-xs text-artisan-muted leading-relaxed">
             {t('login.subtitle')}
           </p>
         </div>
@@ -102,13 +102,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         {/* Phone Input Box */}
         <form onSubmit={handleSubmit} className="space-y-3 pt-1">
           <div className="space-y-1.5">
-            <label className="text-[11px] font-mono font-bold text-[#8d90a0] uppercase tracking-wider block">
+            <label className="text-[11px] font-bold text-artisan-muted uppercase tracking-wider block">
               {t('login.phoneLabel')}
             </label>
 
-            <div className="bg-[#191c1e] rounded-xl border border-[#1E293B] focus-within:border-[#2563eb] focus-within:ring-2 focus-within:ring-[#2563eb]/30 p-2.5 shadow-sm flex items-center gap-2 transition-colors">
+            <div className="bg-white rounded-2xl border border-artisan-border focus-within:border-terracotta focus-within:ring-2 focus-within:ring-terracotta/20 p-3 shadow-soft flex items-center gap-2 transition-colors">
               {/* Flag & Country Code */}
-              <div className="flex items-center gap-1.5 pr-2.5 border-r border-[#1E293B] text-xs font-mono font-bold text-[#b4c5ff]">
+              <div className="flex items-center gap-1.5 pr-2.5 border-r border-artisan-border text-xs font-bold text-artisan-text">
                 <span className="text-base">🇮🇳</span>
                 <span>+91</span>
               </div>
@@ -119,7 +119,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 value={phone}
                 onChange={handlePhoneChange}
                 placeholder="98480 22338"
-                className="flex-1 text-base font-mono font-bold text-white focus:outline-none bg-transparent tracking-wide placeholder:text-[#434655]"
+                className="flex-1 text-base font-bold text-artisan-text focus:outline-none bg-transparent tracking-wide placeholder:text-artisan-muted/40"
                 maxLength={11}
               />
 
@@ -127,10 +127,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
               <button
                 type="button"
                 onClick={handleVoicePhone}
-                className={`p-2 rounded-lg transition ${
+                className={`p-2 rounded-xl transition ${
                   isListening
-                    ? 'bg-[#2563eb] text-white animate-pulse shadow-glow-blue'
-                    : 'bg-[#101415] hover:bg-[#272a2c] text-[#8d90a0] border border-[#1E293B]'
+                    ? 'bg-terracotta text-white animate-pulse'
+                    : 'bg-artisan-bg hover:bg-neutral-200 text-artisan-muted'
                 }`}
                 title={t('login.speakPhone')}
               >
@@ -138,7 +138,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
               </button>
             </div>
             {isListening && (
-              <p className="text-[11px] text-[#b4c5ff] font-mono font-semibold animate-pulse pl-1">
+              <p className="text-[11px] text-terracotta font-semibold animate-pulse pl-1">
                 Listening for 10-digit number...
               </p>
             )}
@@ -148,10 +148,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
           <button
             type="submit"
             disabled={!isValid}
-            className={`w-full py-3 px-4 rounded-xl font-mono font-bold text-sm shadow-glow-blue transition-all flex items-center justify-center gap-2 border ${
+            className={`w-full py-3.5 px-4 rounded-2xl font-bold text-sm shadow-craft transition-all flex items-center justify-center gap-2 ${
               isValid
-                ? 'bg-[#2563eb] hover:bg-[#1d4ed8] text-white active:scale-[0.99] border-[#b4c5ff]/30'
-                : 'bg-[#191c1e] text-[#434655] border-[#1E293B] cursor-not-allowed'
+                ? 'bg-terracotta hover:bg-terracotta-hover text-white active:scale-[0.99]'
+                : 'bg-neutral-200 text-neutral-400 cursor-not-allowed'
             }`}
           >
             <span>{t('login.sendOtpBtn')}</span>
@@ -161,8 +161,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
         {/* Divider */}
         <div className="relative py-1 flex items-center justify-center">
-          <div className="w-full border-t border-[#1E293B]" />
-          <span className="bg-[#101415] px-3 text-[11px] font-mono font-bold text-[#8d90a0] uppercase tracking-wider absolute">
+          <div className="w-full border-t border-artisan-border" />
+          <span className="bg-artisan-bg px-3 text-[11px] font-bold text-artisan-muted uppercase tracking-wider absolute">
             {t('common.or')}
           </span>
         </div>
@@ -170,7 +170,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         {/* One-Tap WhatsApp Sign In Button */}
         <button
           onClick={() => onDirectLogin ? onDirectLogin(selectedRole) : onSendOtp(`+91 ${phone}`)}
-          className="w-full bg-[#191c1e] hover:bg-[#1f2429] text-[#22C55E] border border-[#22C55E]/40 py-3 px-4 rounded-xl font-mono font-bold text-xs shadow-sm active:scale-[0.99] transition flex items-center justify-center gap-2"
+          className="w-full bg-white hover:bg-neutral-50 text-[#25D366] border border-[#25D366]/40 py-3.5 px-4 rounded-2xl font-bold text-xs shadow-soft active:scale-[0.99] transition flex items-center justify-center gap-2"
         >
           <MessageSquare className="w-4 h-4 fill-current" />
           <span>{t('login.whatsappLoginBtn')}</span>
@@ -179,11 +179,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
       {/* Footer Trust & Protection Badge */}
       <div className="pt-2 pb-1 text-center space-y-1">
-        <div className="flex items-center justify-center gap-1.5 text-[#22C55E] text-[11px] font-mono font-semibold">
+        <div className="flex items-center justify-center gap-1.5 text-forest text-[11px] font-semibold">
           <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
           <span>Verified Government Handicrafts Portal</span>
         </div>
-        <p className="text-[10px] text-[#8d90a0] font-mono">
+        <p className="text-[10px] text-artisan-muted">
           {t('login.termsNotice')}
         </p>
       </div>

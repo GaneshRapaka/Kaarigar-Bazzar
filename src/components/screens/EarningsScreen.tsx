@@ -70,19 +70,19 @@ export const EarningsScreen: React.FC<EarningsScreenProps> = ({
   const snippet = whatsAppSnippets[currentLanguage] || whatsAppSnippets.en;
 
   return (
-    <div className="flex-1 flex flex-col p-4 bg-[#101415] text-[#e0e3e5] overflow-y-auto select-none space-y-4 font-mono">
+    <div className="flex-1 flex flex-col p-4 bg-artisan-bg text-artisan-text overflow-y-auto select-none space-y-4">
       {/* Lifetime Earnings Banner */}
-      <div className="bg-[#191c1e] rounded-2xl p-5 border border-[#1E293B] shadow-sm space-y-1">
+      <div className="bg-gradient-to-br from-terracotta to-[#A04523] rounded-3xl p-5 text-white shadow-craft space-y-1">
         <div className="flex items-center justify-between">
-          <span className="text-[11px] font-bold text-[#8d90a0] uppercase tracking-widest block">
+          <span className="text-[11px] font-bold tracking-widest uppercase opacity-85 block">
             {t('earnings.totalLifetime')}
           </span>
-          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#22C55E] bg-[#22C55E]/15 border border-[#22C55E]/30 px-2 py-0.5 rounded">
+          <span className="inline-flex items-center gap-1 text-[10px] font-extrabold bg-white/20 px-2 py-0.5 rounded-full">
             <TrendingUp className="w-3 h-3" />
             +18.4%
           </span>
         </div>
-        <div className="text-3xl font-bold text-white tracking-tight">
+        <div className="text-3xl font-black tracking-tight">
           ₹24,680
         </div>
       </div>
@@ -90,31 +90,31 @@ export const EarningsScreen: React.FC<EarningsScreenProps> = ({
       {/* Metrics 3-Item Breakdown Grid */}
       <div className="grid grid-cols-3 gap-2.5">
         {/* This Week */}
-        <div className="bg-[#191c1e] p-3 rounded-xl border border-[#1E293B] shadow-sm space-y-1">
-          <span className="text-[10px] font-bold text-[#8d90a0] block leading-tight">
+        <div className="bg-white p-3 rounded-2xl border border-artisan-border shadow-soft space-y-1">
+          <span className="text-[10px] font-bold text-artisan-muted block leading-tight">
             {t('earnings.thisWeek')}
           </span>
-          <span className="text-base font-bold text-white block">
+          <span className="text-base font-extrabold text-artisan-text block">
             ₹4,280
           </span>
         </div>
 
         {/* This Month */}
-        <div className="bg-[#191c1e] p-3 rounded-xl border border-[#1E293B] shadow-sm space-y-1">
-          <span className="text-[10px] font-bold text-[#8d90a0] block leading-tight">
+        <div className="bg-white p-3 rounded-2xl border border-artisan-border shadow-soft space-y-1">
+          <span className="text-[10px] font-bold text-artisan-muted block leading-tight">
             {t('earnings.thisMonth')}
           </span>
-          <span className="text-base font-bold text-white block">
+          <span className="text-base font-extrabold text-artisan-text block">
             ₹12,350
           </span>
         </div>
 
         {/* Pending Payout */}
-        <div className="bg-[#191c1e] p-3 rounded-xl border border-[#2563eb]/40 shadow-glow-blue space-y-1">
-          <span className="text-[10px] font-bold text-[#b4c5ff] block leading-tight">
+        <div className="bg-white p-3 rounded-2xl border border-terracotta/30 bg-[#FFF9F6] shadow-soft space-y-1">
+          <span className="text-[10px] font-bold text-terracotta block leading-tight">
             {t('earnings.pendingPayout')}
           </span>
-          <span className="text-base font-bold text-[#b4c5ff] block">
+          <span className="text-base font-extrabold text-terracotta block">
             ₹3,200
           </span>
         </div>
@@ -122,12 +122,12 @@ export const EarningsScreen: React.FC<EarningsScreenProps> = ({
 
       {/* Guarded Payout / Verification Status Card */}
       {isKycVerified ? (
-        <div className="bg-[#191c1e] rounded-xl p-3 border border-[#22C55E]/40 shadow-sm flex items-center justify-between gap-2">
+        <div className="bg-white rounded-2xl p-3 border border-forest/30 shadow-soft flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#22C55E] shrink-0" />
-            <span className="text-[11px] font-semibold text-white">
+            <ShieldCheck className="w-4 h-4 text-forest shrink-0" />
+            <span className="text-[11px] font-semibold text-artisan-text">
               {t('earnings.bankStatus')}:{' '}
-              <span className="text-[#22C55E] font-bold">
+              <span className="text-forest font-bold">
                 {profile?.verificationRecord?.maskedIdentifier || t('earnings.whatsappVerified')}
               </span>
             </span>
@@ -135,20 +135,20 @@ export const EarningsScreen: React.FC<EarningsScreenProps> = ({
 
           <button
             onClick={() => setWithdrawSuccess(true)}
-            className="text-[11px] font-bold text-white bg-[#22C55E] hover:bg-[#1ea84f] px-3 py-1.5 rounded-lg shadow-sm transition active:scale-95 shrink-0"
+            className="text-[11px] font-bold text-white bg-forest hover:bg-forest/90 px-3 py-1.5 rounded-xl shadow-sm transition active:scale-95 shrink-0"
           >
             {withdrawSuccess ? '✓ Transferred' : 'Withdraw ₹3,200'}
           </button>
         </div>
       ) : (
-        <div className="bg-[#191c1e] border border-[#FACC15]/40 rounded-xl p-3 shadow-sm space-y-2">
+        <div className="bg-white border border-amber-300 rounded-2xl p-3.5 shadow-soft space-y-2">
           <div className="flex items-start gap-2">
-            <AlertTriangle className="w-4 h-4 text-[#FACC15] shrink-0 mt-0.5" />
+            <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
             <div className="space-y-0.5">
-              <span className="text-xs font-bold text-white block">
+              <span className="text-xs font-bold text-artisan-text block">
                 {t('sellerVerification.statusRequired')}
               </span>
-              <p className="text-[11px] text-[#8d90a0] leading-relaxed">
+              <p className="text-[11px] text-artisan-muted leading-relaxed">
                 {t('sellerVerification.payoutRestrictedNotice')}
               </p>
             </div>
@@ -156,7 +156,7 @@ export const EarningsScreen: React.FC<EarningsScreenProps> = ({
 
           <button
             onClick={onOpenVerificationModal}
-            className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-bold py-2 px-3 rounded-lg shadow-glow-blue transition flex items-center justify-center gap-1.5 active:scale-95 border border-[#b4c5ff]/30"
+            className="w-full bg-terracotta hover:bg-terracotta-hover text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow-craft transition flex items-center justify-center gap-1.5 active:scale-95"
           >
             <Lock className="w-3.5 h-3.5" />
             <span>{t('sellerVerification.verifyToWithdrawBtn')}</span>
@@ -170,51 +170,51 @@ export const EarningsScreen: React.FC<EarningsScreenProps> = ({
 
       {/* Full Sales Report on WhatsApp Section */}
       <div className="space-y-2 pt-1">
-        <div className="bg-[#191c1e] rounded-2xl p-4 border border-[#1E293B] shadow-sm space-y-3">
+        <div className="bg-white rounded-3xl p-4 border border-artisan-border shadow-soft space-y-3">
           <div className="flex items-start gap-3">
-            <div className="w-9 h-9 rounded-lg bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#22C55E] shrink-0 mt-0.5">
+            <div className="w-9 h-9 rounded-full bg-[#25D366]/15 flex items-center justify-center text-[#25D366] shrink-0 mt-0.5">
               <MessageSquare className="w-4 h-4 fill-current" />
             </div>
             <div>
-              <h3 className="text-xs font-bold text-white font-mono">
+              <h3 className="text-xs font-bold text-artisan-text">
                 {t('earnings.fullReportTitle')}
               </h3>
-              <p className="text-[11px] text-[#8d90a0] leading-relaxed mt-0.5">
+              <p className="text-[11px] text-artisan-muted leading-relaxed mt-0.5">
                 {t('earnings.fullReportDesc')}
               </p>
             </div>
           </div>
 
           {/* Simulated Localized WhatsApp Chat Bubble */}
-          <div className="bg-[#101415] p-3 rounded-xl space-y-1 border border-[#1E293B]">
+          <div className="bg-[#EFEAE2] p-3 rounded-2xl space-y-1 border border-[#E0D9CD]">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-[#8d90a0]">
+              <span className="text-[10px] font-bold text-neutral-600">
                 Kaarigar Assistant
               </span>
-              <span className="text-[9px] text-[#434655]">8:01 PM</span>
+              <span className="text-[9px] text-neutral-400">8:01 PM</span>
             </div>
 
-            <div className="bg-[#191c1e] rounded-lg p-2.5 shadow-sm text-xs text-[#e0e3e5] space-y-1 relative border border-[#1E293B]">
-              <p className="font-bold text-[11px] text-[#b4c5ff]">
+            <div className="bg-white rounded-xl p-2.5 shadow-sm text-xs text-neutral-800 space-y-1 relative">
+              <p className="font-bold text-[11px] text-terracotta">
                 {snippet.title}
               </p>
               <p className="text-[11px] leading-relaxed">
                 {snippet.orders}
               </p>
-              <p className="text-[11px] text-[#8d90a0]">
+              <p className="text-[11px] text-neutral-600">
                 {snippet.best}
               </p>
 
-              <div className="flex justify-end items-center gap-1 text-[9px] text-[#8d90a0] pt-0.5">
+              <div className="flex justify-end items-center gap-1 text-[9px] text-neutral-400 pt-0.5">
                 <span>8:01 PM</span>
-                <CheckCheck className="w-3.5 h-3.5 text-[#2563eb]" />
+                <CheckCheck className="w-3.5 h-3.5 text-[#34B7F1]" />
               </div>
             </div>
           </div>
 
           <button
             onClick={() => setReportSent(true)}
-            className="w-full bg-[#191c1e] hover:bg-[#1f2429] text-[#22C55E] border border-[#22C55E]/40 text-xs font-bold py-2.5 px-3 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 active:scale-95"
+            className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 active:scale-95"
           >
             <MessageSquare className="w-3.5 h-3.5 fill-current" />
             <span>

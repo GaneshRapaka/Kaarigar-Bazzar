@@ -18,52 +18,52 @@ export const OrdersScreen: React.FC<OrdersScreenProps> = ({ orders, onPackOrder 
   const deliveredOrders = orders.filter((o) => o.statusGroup === 'delivered');
 
   return (
-    <div className="flex-1 flex flex-col p-4 bg-[#101415] text-[#e0e3e5] overflow-y-auto select-none space-y-4">
+    <div className="flex-1 flex flex-col p-4 bg-artisan-bg text-artisan-text overflow-y-auto select-none space-y-4">
       {/* Top Header */}
       <div className="pt-1">
-        <h1 className="text-xl font-bold text-white tracking-tight font-mono">
+        <h1 className="text-xl font-extrabold text-artisan-text tracking-tight">
           {t('orders.title')}
         </h1>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-1 p-1 bg-[#191c1e] rounded-xl border border-[#1E293B] shadow-sm overflow-x-auto scrollbar-none font-mono">
+      <div className="flex items-center gap-1 p-1 bg-white rounded-2xl border border-artisan-border shadow-soft overflow-x-auto scrollbar-none">
         <button
           onClick={() => setActiveTab('new')}
-          className={`flex-1 py-1.5 px-2.5 rounded-lg text-[11px] font-semibold whitespace-nowrap transition ${
+          className={`flex-1 py-1.5 px-2.5 rounded-xl text-[11px] font-bold whitespace-nowrap transition ${
             activeTab === 'new'
-              ? 'bg-[#2563eb] text-white shadow-glow-blue'
-              : 'text-[#8d90a0] hover:text-white'
+              ? 'bg-terracotta text-white shadow-sm'
+              : 'text-artisan-muted hover:text-artisan-text'
           }`}
         >
           {t('orders.newTab')} ({newOrders.length})
         </button>
         <button
           onClick={() => setActiveTab('packed')}
-          className={`flex-1 py-1.5 px-2.5 rounded-lg text-[11px] font-semibold whitespace-nowrap transition ${
+          className={`flex-1 py-1.5 px-2.5 rounded-xl text-[11px] font-bold whitespace-nowrap transition ${
             activeTab === 'packed'
-              ? 'bg-[#2563eb] text-white shadow-glow-blue'
-              : 'text-[#8d90a0] hover:text-white'
+              ? 'bg-terracotta text-white shadow-sm'
+              : 'text-artisan-muted hover:text-artisan-text'
           }`}
         >
           {t('orders.packedTab')} ({packedOrders.length})
         </button>
         <button
           onClick={() => setActiveTab('shipped')}
-          className={`flex-1 py-1.5 px-2.5 rounded-lg text-[11px] font-semibold whitespace-nowrap transition ${
+          className={`flex-1 py-1.5 px-2.5 rounded-xl text-[11px] font-bold whitespace-nowrap transition ${
             activeTab === 'shipped'
-              ? 'bg-[#2563eb] text-white shadow-glow-blue'
-              : 'text-[#8d90a0] hover:text-white'
+              ? 'bg-terracotta text-white shadow-sm'
+              : 'text-artisan-muted hover:text-artisan-text'
           }`}
         >
           {t('orders.shippedTab')} ({shippedOrders.length})
         </button>
         <button
           onClick={() => setActiveTab('delivered')}
-          className={`flex-1 py-1.5 px-2.5 rounded-lg text-[11px] font-semibold whitespace-nowrap transition ${
+          className={`flex-1 py-1.5 px-2.5 rounded-xl text-[11px] font-bold whitespace-nowrap transition ${
             activeTab === 'delivered'
-              ? 'bg-[#2563eb] text-white shadow-glow-blue'
-              : 'text-[#8d90a0] hover:text-white'
+              ? 'bg-terracotta text-white shadow-sm'
+              : 'text-artisan-muted hover:text-artisan-text'
           }`}
         >
           {t('orders.deliveredTab')} ({deliveredOrders.length})
@@ -71,12 +71,12 @@ export const OrdersScreen: React.FC<OrdersScreenProps> = ({ orders, onPackOrder 
       </div>
 
       {/* Section: New Orders (Ready to Pack) */}
-      <div className="space-y-2.5 font-mono">
+      <div className="space-y-2.5">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-xs font-bold text-[#8d90a0] uppercase tracking-wider">
+          <h2 className="text-xs font-bold text-artisan-text uppercase tracking-wider">
             {t('orders.newTab')} ({newOrders.length} Pending)
           </h2>
-          <span className="text-[10px] text-[#b4c5ff] bg-[#2563eb]/20 px-2 py-0.5 rounded border border-[#2563eb]/30">
+          <span className="text-[10px] text-terracotta font-bold">
             {newOrders.length} Pending
           </span>
         </div>
@@ -85,28 +85,28 @@ export const OrdersScreen: React.FC<OrdersScreenProps> = ({ orders, onPackOrder 
           {newOrders.map((order) => (
             <div
               key={order.id}
-              className="bg-[#191c1e] rounded-xl p-3.5 border border-[#1E293B] shadow-sm space-y-2 hover:border-[#2563eb]/60 transition"
+              className="bg-white rounded-2xl p-3.5 border border-artisan-border shadow-soft space-y-2 hover:border-terracotta/40 transition"
             >
               <div className="flex items-start justify-between">
                 <div className="space-y-0.5">
                   <div className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#b4c5ff]" />
-                    <h3 className="text-sm font-bold text-white">{order.city}</h3>
+                    <MapPin className="w-3.5 h-3.5 text-terracotta" />
+                    <h3 className="text-sm font-bold text-artisan-text">{order.city}</h3>
                   </div>
-                  <p className="text-[11px] text-[#8d90a0]">{order.itemTitle}</p>
+                  <p className="text-[11px] text-artisan-muted">{order.itemTitle}</p>
                 </div>
-                <span className="text-base font-bold text-white">₹{order.amount}</span>
+                <span className="text-base font-black text-artisan-text">₹{order.amount}</span>
               </div>
 
-              <div className="pt-2 border-t border-[#1E293B] flex items-center justify-between">
-                <div className="flex items-center gap-1 text-[11px] font-medium text-[#FACC15] bg-[#FACC15]/15 px-2 py-0.5 rounded-md border border-[#FACC15]/30">
+              <div className="pt-2 border-t border-artisan-border/70 flex items-center justify-between">
+                <div className="flex items-center gap-1 text-[11px] font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
                   <Clock className="w-3 h-3" />
-                  <span>Awaiting Packing</span>
+                  <span>Status: Awaiting Packing</span>
                 </div>
 
                 <button
                   onClick={() => onPackOrder && onPackOrder(order.id)}
-                  className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[11px] font-bold py-1.5 px-3 rounded-lg shadow-glow-blue transition flex items-center gap-1 active:scale-95 border border-[#b4c5ff]/30"
+                  className="bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold py-1 px-3 rounded-lg shadow-sm transition flex items-center gap-1"
                 >
                   <Box className="w-3 h-3" />
                   <span>{t('orders.packButton')}</span>
@@ -116,7 +116,7 @@ export const OrdersScreen: React.FC<OrdersScreenProps> = ({ orders, onPackOrder 
           ))}
 
           {newOrders.length === 0 && (
-            <div className="bg-[#191c1e] p-6 rounded-xl border border-[#1E293B] text-center text-xs text-[#8d90a0]">
+            <div className="bg-white p-6 rounded-2xl border border-artisan-border text-center text-xs text-artisan-muted shadow-soft">
               {t('orders.emptyNew')}
             </div>
           )}
@@ -124,12 +124,12 @@ export const OrdersScreen: React.FC<OrdersScreenProps> = ({ orders, onPackOrder 
       </div>
 
       {/* Section: Recent Deliveries */}
-      <div className="space-y-2.5 pt-1 font-mono">
+      <div className="space-y-2.5 pt-1">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-xs font-bold text-[#8d90a0] uppercase tracking-wider">
+          <h2 className="text-xs font-bold text-artisan-text uppercase tracking-wider">
             {t('orders.deliveredTab')}
           </h2>
-          <span className="text-[10px] text-[#22C55E] bg-[#22C55E]/15 px-2 py-0.5 rounded border border-[#22C55E]/30">
+          <span className="text-[10px] text-forest font-bold">
             Fulfilled
           </span>
         </div>
@@ -138,22 +138,22 @@ export const OrdersScreen: React.FC<OrdersScreenProps> = ({ orders, onPackOrder 
           {deliveredOrders.map((order) => (
             <div
               key={order.id}
-              className="bg-[#191c1e] rounded-xl p-3.5 border border-[#1E293B] shadow-sm flex items-center justify-between"
+              className="bg-white rounded-2xl p-3.5 border border-artisan-border shadow-soft flex items-center justify-between"
             >
               <div className="space-y-0.5">
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#22C55E]" />
-                  <h3 className="text-sm font-bold text-white">{order.city}</h3>
+                  <MapPin className="w-3.5 h-3.5 text-forest" />
+                  <h3 className="text-sm font-bold text-artisan-text">{order.city}</h3>
                 </div>
-                <div className="flex items-center gap-1 text-[11px] font-medium text-[#22C55E]">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Delivered</span>
+                <div className="flex items-center gap-1 text-[11px] font-medium text-forest">
+                  <CheckCircle2 className="w-3 h-3" />
+                  <span>Status: Delivered</span>
                 </div>
               </div>
 
               <div className="text-right">
-                <span className="text-base font-bold text-white">₹{order.amount}</span>
-                <span className="text-[10px] text-[#8d90a0] block">{order.timeAgo}</span>
+                <span className="text-base font-black text-artisan-text">₹{order.amount}</span>
+                <span className="text-[10px] text-artisan-muted block">{order.timeAgo}</span>
               </div>
             </div>
           ))}

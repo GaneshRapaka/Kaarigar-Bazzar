@@ -29,15 +29,15 @@ export const MyShopScreen: React.FC<MyShopScreenProps> = ({
   const draftCount = products.filter((p) => p.status === 'draft' || p.status === 'paused').length;
 
   return (
-    <div className="flex-1 flex flex-col p-4 bg-[#101415] text-[#e0e3e5] overflow-y-auto select-none space-y-4">
+    <div className="flex-1 flex flex-col p-4 bg-artisan-bg text-artisan-text overflow-y-auto select-none space-y-4">
       {/* Top Header Bar */}
       <div className="flex items-center justify-between pt-1">
-        <h1 className="text-xl font-bold text-white tracking-tight font-mono">
+        <h1 className="text-xl font-extrabold text-artisan-text tracking-tight">
           {t('shop.title')}
         </h1>
         <button
           onClick={onAddNew}
-          className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-mono font-bold py-2 px-3.5 rounded-xl shadow-glow-blue transition flex items-center gap-1.5 active:scale-95 border border-[#b4c5ff]/30"
+          className="bg-terracotta hover:bg-terracotta-hover text-white text-xs font-bold py-2 px-3.5 rounded-full shadow-craft transition flex items-center gap-1.5 active:scale-95"
         >
           <Plus className="w-3.5 h-3.5 stroke-[3]" />
           <span>{t('shop.addNew')}</span>
@@ -45,33 +45,33 @@ export const MyShopScreen: React.FC<MyShopScreenProps> = ({
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-1.5 p-1 bg-[#191c1e] rounded-xl border border-[#1E293B] shadow-sm font-mono">
+      <div className="flex items-center gap-1.5 p-1 bg-white rounded-2xl border border-artisan-border shadow-soft">
         <button
           onClick={() => setActiveTab('all')}
-          className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold transition ${
+          className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold transition ${
             activeTab === 'all'
-              ? 'bg-[#2563eb] text-white shadow-glow-blue'
-              : 'text-[#8d90a0] hover:text-white'
+              ? 'bg-terracotta text-white shadow-sm'
+              : 'text-artisan-muted hover:text-artisan-text'
           }`}
         >
           {t('shop.allTab')} ({products.length})
         </button>
         <button
           onClick={() => setActiveTab('live')}
-          className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold transition ${
+          className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold transition ${
             activeTab === 'live'
-              ? 'bg-[#2563eb] text-white shadow-glow-blue'
-              : 'text-[#8d90a0] hover:text-white'
+              ? 'bg-terracotta text-white shadow-sm'
+              : 'text-artisan-muted hover:text-artisan-text'
           }`}
         >
           {t('shop.liveTab')} ({liveCount})
         </button>
         <button
           onClick={() => setActiveTab('drafts')}
-          className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold transition ${
+          className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold transition ${
             activeTab === 'drafts'
-              ? 'bg-[#2563eb] text-white shadow-glow-blue'
-              : 'text-[#8d90a0] hover:text-white'
+              ? 'bg-terracotta text-white shadow-sm'
+              : 'text-artisan-muted hover:text-artisan-text'
           }`}
         >
           {t('shop.draftsTab')} ({draftCount})
@@ -85,11 +85,11 @@ export const MyShopScreen: React.FC<MyShopScreenProps> = ({
           return (
             <div
               key={product.id}
-              className="bg-[#191c1e] rounded-xl p-2.5 border border-[#1E293B] shadow-sm flex flex-col justify-between hover:border-[#2563eb]/60 hover:shadow-glow-blue transition group"
+              className="bg-white rounded-2xl p-2.5 border border-artisan-border shadow-soft flex flex-col justify-between hover:border-terracotta/40 transition group"
             >
               <div className="space-y-2">
                 {/* Image & Status Tag */}
-                <div className="w-full aspect-square rounded-lg overflow-hidden relative bg-[#0c0f10] border border-[#1E293B]">
+                <div className="w-full aspect-square rounded-xl overflow-hidden relative bg-neutral-100 border border-neutral-100">
                   <img
                     src={product.image}
                     alt={product.title}
@@ -97,10 +97,10 @@ export const MyShopScreen: React.FC<MyShopScreenProps> = ({
                   />
                   <div className="absolute top-2 right-2">
                     <span
-                      className={`inline-flex items-center gap-1 text-[9px] font-mono font-bold px-2 py-0.5 rounded shadow-sm border ${
+                      className={`inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm ${
                         isLive
-                          ? 'bg-[#101415]/90 text-[#22C55E] border-[#22C55E]/40'
-                          : 'bg-[#101415]/90 text-[#8d90a0] border-[#1E293B]'
+                          ? 'bg-forest-light text-forest border border-forest/30'
+                          : 'bg-neutral-100 text-neutral-600 border border-neutral-300'
                       }`}
                     >
                       {isLive ? t('shop.liveBadge') : t('shop.draftBadge')}
@@ -110,11 +110,11 @@ export const MyShopScreen: React.FC<MyShopScreenProps> = ({
 
                 {/* Title */}
                 <div>
-                  <h3 className="text-xs font-bold text-white leading-tight line-clamp-2">
+                  <h3 className="text-xs font-bold text-artisan-text leading-tight line-clamp-2">
                     {product.title}
                   </h3>
                   {product.teluguTitle && (
-                    <p className="text-[10px] text-[#8d90a0] mt-0.5 line-clamp-1">
+                    <p className="text-[10px] text-artisan-muted mt-0.5 line-clamp-1">
                       {product.teluguTitle}
                     </p>
                   )}
@@ -122,8 +122,8 @@ export const MyShopScreen: React.FC<MyShopScreenProps> = ({
               </div>
 
               {/* Price & Translate Action */}
-              <div className="pt-2 mt-1.5 border-t border-[#1E293B] flex items-center justify-between font-mono">
-                <span className="text-sm font-bold text-white">
+              <div className="pt-2 mt-1.5 border-t border-neutral-100 flex items-center justify-between">
+                <span className="text-sm font-black text-artisan-text">
                   ₹{product.price.toLocaleString('en-IN')}
                 </span>
 
@@ -132,7 +132,7 @@ export const MyShopScreen: React.FC<MyShopScreenProps> = ({
                     e.stopPropagation();
                     setTranslatingProduct(product);
                   }}
-                  className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#2563eb]/20 hover:bg-[#2563eb] text-[#b4c5ff] hover:text-white transition text-[10px] font-bold border border-[#2563eb]/30"
+                  className="flex items-center gap-1 px-2 py-1 rounded-lg bg-terracotta/10 hover:bg-terracotta text-terracotta hover:text-white transition text-[10px] font-bold border border-terracotta/20"
                   title="Translate listing into 8 Indian languages"
                 >
                   <Languages className="w-3 h-3" />

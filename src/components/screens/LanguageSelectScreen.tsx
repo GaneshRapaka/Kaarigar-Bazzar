@@ -27,17 +27,17 @@ export const LanguageSelectScreen: React.FC<LanguageSelectScreenProps> = ({ onCo
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-between p-4.5 bg-[#101415] text-[#e0e3e5] overflow-y-auto">
+    <div className="flex-1 flex flex-col justify-between p-5 bg-artisan-bg overflow-y-auto">
       {/* Header Section */}
       <div className="space-y-4 pt-1">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-white tracking-tight">
+            <span className="text-xl font-extrabold text-artisan-text tracking-tight">
               Namaste & Welcome
             </span>
             <span className="text-xl">🙏</span>
           </div>
-          <p className="text-xs text-[#8d90a0] leading-relaxed">
+          <p className="text-xs text-artisan-muted leading-relaxed">
             Please choose your language. The entire app and voice assistant will adapt to your choice.
           </p>
         </div>
@@ -50,19 +50,19 @@ export const LanguageSelectScreen: React.FC<LanguageSelectScreenProps> = ({ onCo
               <button
                 key={lang.id}
                 onClick={() => handleSelect(lang.id)}
-                className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all duration-200 text-left ${
+                className={`w-full flex items-center justify-between p-3 rounded-2xl border transition-all duration-200 text-left ${
                   isSelected
-                    ? 'border-[#2563eb] bg-[#1d2022] shadow-glow-blue ring-1 ring-[#2563eb]/50'
-                    : 'border-[#1E293B] bg-[#191c1e] hover:border-[#434655]'
+                    ? 'border-terracotta bg-[#FFF8F5] shadow-craft ring-1 ring-terracotta/40'
+                    : 'border-artisan-border bg-white hover:border-neutral-300'
                 }`}
               >
                 <div className="space-y-0.5">
-                  <div className="text-base font-bold text-white font-sans">
+                  <div className="text-base font-bold text-artisan-text font-sans">
                     {lang.native}
                   </div>
-                  <div className="flex items-center gap-1.5 font-mono">
-                    <span className="text-xs text-[#8d90a0]">{lang.name}</span>
-                    <span className="text-[9px] text-[#b4c5ff] bg-[#2563eb]/20 px-1.5 py-0.5 rounded border border-[#2563eb]/30">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs text-artisan-muted">{lang.name}</span>
+                    <span className="text-[9px] text-terracotta bg-terracotta/10 px-1.5 py-0.5 rounded border border-terracotta/20 font-semibold">
                       {lang.badge}
                     </span>
                   </div>
@@ -72,8 +72,8 @@ export const LanguageSelectScreen: React.FC<LanguageSelectScreenProps> = ({ onCo
                   <div
                     className={`w-5 h-5 rounded-full border flex items-center justify-center transition-colors ${
                       isSelected
-                        ? 'border-[#2563eb] bg-[#2563eb] text-white shadow-glow-blue'
-                        : 'border-[#434655] bg-[#101415]'
+                        ? 'border-terracotta bg-terracotta text-white'
+                        : 'border-neutral-300 bg-neutral-50'
                     }`}
                   >
                     {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
@@ -87,20 +87,20 @@ export const LanguageSelectScreen: React.FC<LanguageSelectScreenProps> = ({ onCo
         {/* Voice Assistant Mic Card */}
         <div
           onClick={() => setIsVoiceOpen(true)}
-          className="bg-[#191c1e] rounded-xl p-3 border border-[#1E293B] flex items-center gap-3 cursor-pointer hover:border-[#2563eb]/50 transition shadow-sm group"
+          className="bg-white rounded-2xl p-3.5 border border-artisan-border flex items-center gap-3 cursor-pointer hover:border-terracotta/40 hover:bg-[#FFFBF8] transition shadow-soft group"
         >
-          <div className="w-9 h-9 rounded-lg bg-[#2563eb]/20 border border-[#2563eb]/40 flex items-center justify-center text-[#b4c5ff] group-hover:scale-105 transition">
-            <Mic className="w-4 h-4" />
+          <div className="w-10 h-10 rounded-full bg-mustard/15 flex items-center justify-center text-mustard group-hover:scale-105 transition">
+            <Mic className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <h4 className="text-xs font-bold text-white">
+            <h4 className="text-xs font-bold text-artisan-text">
               Prefer speaking over typing?
             </h4>
-            <p className="text-[11px] text-[#8d90a0] font-mono">
+            <p className="text-[11px] text-artisan-muted">
               Tap to speak in {activeLangObj.native} anytime.
             </p>
           </div>
-          <ChevronRight className="w-4 h-4 text-[#8d90a0] group-hover:text-[#b4c5ff] transition" />
+          <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-terracotta transition" />
         </div>
       </div>
 
@@ -108,10 +108,10 @@ export const LanguageSelectScreen: React.FC<LanguageSelectScreenProps> = ({ onCo
       <div className="pt-4 pb-1">
         <button
           onClick={handleProceed}
-          className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white py-3 px-4 rounded-xl font-bold text-sm shadow-glow-blue active:scale-[0.99] transition-all flex items-center justify-center gap-2 border border-[#b4c5ff]/20"
+          className="w-full bg-terracotta hover:bg-terracotta-hover text-white py-3.5 px-4 rounded-2xl font-bold text-sm shadow-craft active:scale-[0.99] transition-all flex items-center justify-center gap-2"
         >
           <span>{t('common.continue')} in {activeLangObj.name}</span>
-          <span className="text-sm font-semibold text-[#b4c5ff]">({activeLangObj.native})</span>
+          <span className="font-telugu text-sm">({activeLangObj.native})</span>
         </button>
       </div>
 

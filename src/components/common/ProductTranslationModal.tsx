@@ -64,19 +64,19 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
   };
 
   return (
-    <div className="absolute inset-0 z-50 bg-[#101415]/80 backdrop-blur-md flex items-end justify-center p-3 animate-fadeIn">
-      <div className="w-full max-h-[90vh] bg-[#191c1e] rounded-3xl p-5 border border-[#1E293B] shadow-2xl space-y-4 flex flex-col overflow-y-auto">
+    <div className="absolute inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-end justify-center p-3 animate-fadeIn">
+      <div className="w-full max-h-[90vh] bg-artisan-bg rounded-3xl p-5 border border-artisan-border shadow-2xl space-y-4 flex flex-col overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between pb-2 border-b border-[#1E293B]">
+        <div className="flex items-center justify-between pb-2 border-b border-artisan-border">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-[#2563eb]/20 border border-[#2563eb]/30 flex items-center justify-center text-[#b4c5ff]">
+            <div className="w-8 h-8 rounded-full bg-terracotta/10 border border-terracotta/20 flex items-center justify-center text-terracotta">
               <Languages className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-xs font-mono font-bold text-[#e0e3e5]">
+              <h3 className="text-xs font-bold text-artisan-text">
                 {t('translation.modalTitle')}
               </h3>
-              <p className="text-[10px] text-[#8d90a0]">
+              <p className="text-[10px] text-artisan-muted">
                 Translate for buyers across India & worldwide
               </p>
             </div>
@@ -84,7 +84,7 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
 
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-full bg-[#101415] hover:bg-[#1E293B] border border-[#1E293B] flex items-center justify-center text-[#8d90a0] hover:text-white transition"
+            className="w-7 h-7 rounded-full bg-white hover:bg-neutral-100 border border-artisan-border flex items-center justify-center text-neutral-500 hover:text-artisan-text transition"
           >
             <X className="w-4 h-4" />
           </button>
@@ -92,7 +92,7 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
 
         {/* Target Language Selection Pills */}
         <div className="space-y-1.5">
-          <label className="text-[10px] font-mono font-bold text-[#8d90a0] uppercase tracking-wider block">
+          <label className="text-[10px] font-bold text-artisan-muted uppercase tracking-wider block">
             {t('translation.targetLanguage')}
           </label>
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
@@ -100,14 +100,14 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
               <button
                 key={lang.id}
                 onClick={() => handleLanguageChange(lang.id)}
-                className={`px-3 py-1 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition ${
+                className={`px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition ${
                   targetLang === lang.id
-                    ? 'bg-[#2563eb] text-white shadow-glow-blue border border-[#b4c5ff]/40'
-                    : 'bg-[#101415] text-[#8d90a0] hover:text-[#e0e3e5] border border-[#1E293B]'
+                    ? 'bg-terracotta text-white shadow-craft'
+                    : 'bg-white text-artisan-muted hover:text-artisan-text border border-artisan-border'
                 }`}
               >
                 <span>{lang.native}</span>
-                <span className="text-[10px] opacity-75 ml-1 font-mono">({lang.name})</span>
+                <span className="text-[10px] opacity-75 ml-1">({lang.name})</span>
               </button>
             ))}
           </div>
@@ -116,29 +116,29 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
         {/* Canonical Original vs Translated Comparison */}
         <div className="space-y-3 flex-1 overflow-y-auto pr-0.5">
           {/* Original (Canonical) */}
-          <div className="bg-[#101415] p-3.5 rounded-2xl border border-[#1E293B] space-y-1">
+          <div className="bg-white p-3.5 rounded-2xl border border-artisan-border shadow-soft space-y-1">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold text-[#8d90a0] uppercase tracking-wider">
+              <span className="text-[10px] font-bold text-artisan-muted uppercase tracking-wider">
                 {t('translation.originalText')} (Original)
               </span>
-              <span className="text-[10px] font-mono font-semibold text-[#b4c5ff] bg-[#2563eb]/20 border border-[#2563eb]/30 px-2 py-0.5 rounded-md">
+              <span className="text-[10px] font-semibold text-terracotta bg-terracotta/10 border border-terracotta/20 px-2 py-0.5 rounded-full">
                 Canonical Protected
               </span>
             </div>
-            <h4 className="text-xs font-bold text-[#e0e3e5]">{product.title}</h4>
-            <p className="text-[11px] text-[#8d90a0] leading-relaxed font-normal">
+            <h4 className="text-xs font-bold text-artisan-text">{product.title}</h4>
+            <p className="text-[11px] text-artisan-muted leading-relaxed font-normal">
               {product.story || product.title}
             </p>
           </div>
 
           {/* AI Translated Preview */}
-          <div className="bg-[#101415] p-3.5 rounded-2xl border-2 border-[#2563eb]/40 space-y-2">
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-terracotta/40 shadow-soft space-y-2">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1 text-[10px] font-mono font-bold text-[#b4c5ff] uppercase tracking-wider">
-                <Sparkles className="w-3 h-3 text-[#2563eb]" />
+              <div className="flex items-center gap-1 text-[10px] font-bold text-terracotta uppercase tracking-wider">
+                <Sparkles className="w-3 h-3 text-terracotta" />
                 <span>{t('translation.translatedText')}</span>
               </div>
-              <span className="text-[10px] font-mono text-[#8d90a0]">Editable</span>
+              <span className="text-[10px] text-artisan-muted">Editable</span>
             </div>
 
             {/* Translated Title input */}
@@ -146,7 +146,7 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
               type="text"
               value={translatedTitle}
               onChange={(e) => setTranslatedTitle(e.target.value)}
-              className="w-full text-xs font-mono font-bold text-[#e0e3e5] bg-[#191c1e] border border-[#1E293B] rounded-xl p-2.5 focus:outline-none focus:border-[#2563eb]"
+              className="w-full text-xs font-bold text-artisan-text bg-[#FFFDFB] border border-artisan-border rounded-xl p-2.5 focus:outline-none focus:border-terracotta"
               placeholder="Translated title"
             />
 
@@ -155,7 +155,7 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
               rows={3}
               value={translatedStory}
               onChange={(e) => setTranslatedStory(e.target.value)}
-              className="w-full text-xs text-[#e0e3e5] bg-[#191c1e] border border-[#1E293B] rounded-xl p-2.5 focus:outline-none focus:border-[#2563eb] leading-relaxed"
+              className="w-full text-xs text-artisan-text bg-[#FFFDFB] border border-artisan-border rounded-xl p-2.5 focus:outline-none focus:border-terracotta leading-relaxed"
               placeholder="Translated craft story"
             />
           </div>
@@ -163,7 +163,7 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
 
         {/* Approval State Notice */}
         {isApproved && (
-          <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold flex items-center justify-center gap-1.5">
+          <div className="p-2.5 rounded-xl bg-forest-light border border-forest/30 text-forest text-xs font-bold flex items-center justify-center gap-1.5">
             <CheckCircle2 className="w-4 h-4" />
             <span>{t('translation.approvedNotice')}</span>
           </div>
@@ -173,14 +173,14 @@ export const ProductTranslationModal: React.FC<ProductTranslationModalProps> = (
         <div className="flex gap-2 pt-1">
           <button
             onClick={handleApprove}
-            className="flex-1 bg-[#2563eb] hover:bg-[#1d4ed8] text-white py-3 rounded-2xl font-mono font-bold text-xs shadow-glow-blue active:scale-95 transition flex items-center justify-center gap-1.5"
+            className="flex-1 bg-terracotta hover:bg-terracotta-hover text-white py-3.5 rounded-2xl font-bold text-xs shadow-craft active:scale-95 transition flex items-center justify-center gap-1.5"
           >
             <Check className="w-3.5 h-3.5 stroke-[3]" />
             <span>{t('translation.approveAction')}</span>
           </button>
           <button
             onClick={onClose}
-            className="px-4 py-3 bg-[#101415] hover:bg-[#1E293B] border border-[#1E293B] text-[#e0e3e5] rounded-2xl font-mono font-semibold text-xs transition"
+            className="px-4 py-3.5 bg-white hover:bg-neutral-100 border border-artisan-border text-artisan-text rounded-2xl font-semibold text-xs transition"
           >
             {t('common.close')}
           </button>

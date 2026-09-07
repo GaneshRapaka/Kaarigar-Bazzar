@@ -144,7 +144,7 @@ export function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#101415] text-[#e0e3e5] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#141312] flex flex-col font-sans">
       {/* Top Screen Switcher Toolbar */}
       <ScreenSwitcher
         currentScreen={currentScreen}
